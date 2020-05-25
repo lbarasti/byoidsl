@@ -1,0 +1,10 @@
+version: 1.0
+shards:
+  cute:
+    github: Papierkorb/cute
+    version: 0.3.1
+
+  fancyline:
+    github: Papierkorb/fancyline
+    version: 0.3.2
+

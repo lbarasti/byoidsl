@@ -8,6 +8,11 @@ targets:
   byoidsl:
     main: src/byoidsl.cr
 
+dependencies:
+  fancyline:
+    github: Papierkorb/fancyline
+    version: ~> 0.3.2
+
 crystal: 0.34.0
 
 license: MIT

@@ -1,6 +1,7 @@
-# TODO: Write documentation for `Byoidsl`
-module Byoidsl
-  VERSION = "0.1.0"
+require "./lib/repl"
 
-  # TODO: Put your code here
-end
+history_file = "#{Dir.current}/history.log"
+
+Repl.new(history: history_file) { |input|
+  puts input
+}
