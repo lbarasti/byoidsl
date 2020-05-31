@@ -12,6 +12,10 @@ dependencies:
   fancyline:
     github: Papierkorb/fancyline
     version: ~> 0.3.2
+  pars3k:
+    github: voximity/pars3k
+  dataclass:
+    github: lbarasti/dataclass
 
 crystal: 0.34.0
 

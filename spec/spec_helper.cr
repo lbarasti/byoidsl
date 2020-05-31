@@ -1,2 +1,2 @@
 require "spec"
-require "../src/byoidsl"
+require "../src/lib/parser"
