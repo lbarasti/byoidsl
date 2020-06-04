@@ -1,19 +1,10 @@
 require "pars3k"
-require "dataclass"
+require "./commands"
 
 include Pars3k
 
 module IGOL
   extend self
-
-  abstract class Command; end
-  class Show < Command; end
-
-  dataclass Evolve{n : Int32} < Command
-  dataclass VarName{name : String}
-  dataclass Pattern{pattern : String}
-  dataclass SetVar{name : VarName, pattern : Pattern} < Command
-  dataclass Apply{coord : {Int32, Int32}, pattern : VarName | Pattern} < Command
 
   def ws
     Parse.many_of(Parse.char(' '))
