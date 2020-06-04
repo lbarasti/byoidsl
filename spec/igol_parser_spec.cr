@@ -8,6 +8,13 @@ describe IGOL do
     coord_parser.parse("(2, 1)").should eq({2,1})
   end
 
+  it "supports signed coordinates" do
+    coord_parser.parse("(-2, 1)").should eq({-2, 1})
+    coord_parser.parse("(-2, -1)").should eq({-2, -1})
+    coord_parser.parse("(+2, -1)").should eq({+2, -1})
+    coord_parser.parse("(2, -1)").should eq({2, -1})
+  end
+
   it "knows how to parse each command" do
     show_parser.parse("show").should be_a Show
     evolve_parser.parse("evolve 72").should eq Evolve.new(72)

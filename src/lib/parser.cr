@@ -19,6 +19,14 @@ module IGOL
     Parse.many_of(Parse.char(' '))
   end
 
+  def signed_int
+    Parse.int | do_parse({
+      sign <= Parse.one_char_of("+-"),
+      int <= Parse.int,
+      Parse.constant(sign == '-' ? -int : int)
+    })
+  end
+
   def var_parser
     Parse.join(
       Parse.one_or_more_of(Parse.alphabet | Parse.digit))
@@ -34,11 +42,11 @@ module IGOL
   def coord_parser
     do_parse({
       _ <= Parse.char('('),
-      x <= Parse.int,
+      x <= signed_int,
       _ <= ws,
       _ <= Parse.char(','),
       _ <= ws,
-      y <= Parse.int,
+      y <= signed_int,
       _ <= Parse.char(')'),
       Parse.constant({x, y})
     })
