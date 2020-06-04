@@ -1,18 +1,37 @@
 # byoidsl
 
-TODO: Write a description here
+This repository is a companion to a live-coding project aimed at building your own interactive DSL.
+
+You can check out the videos [here](https://www.youtube.com/playlist?list=PLfpFq_WLOW__7nB9z2CFUWZhzRM3oSBGM)
 
 ## Installation
 
-TODO: Write installation instructions here
+Clone the project, then run `shards install` to install the dependencies.
+
+You can now run the REPL with the following.
+```
+crystal byoidsl
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+At this stage, the REPL can parse commands to
+* show the current state of the grid
+* evolve the grid
+* assign a pattern to a variable
+* set a pattern on the grid
 
-## Development
+Because we haven't implemented an interpreter yet, the commands will be parsed, but not executed.
 
-TODO: Write development instructions here
+Try running the following yourself!
+
+```
+(0,2) <- .****
+show
+evolve 2
+n: ..*
+(1,-2) <- n
+```
 
 ## Contributing
 
