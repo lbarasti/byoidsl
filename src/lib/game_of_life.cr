@@ -16,23 +16,22 @@ module IGOL
     end
 
     def evolve(iterations = 1)
+      pop = @population
       iterations.times {
-        @population = @population.flat_map { |cell| {{@type}}.expand(cell) }
+        pop = pop.flat_map { |cell| {{@type}}.expand(cell) }
           .tally
-          .select { |cell, count| count == 3 || (count == 4 && @population.includes?(cell)) }
+          .select { |cell, count| count == 3 || (count == 4 && pop.includes?(cell)) }
           .keys.to_set
       }
-      self
+      GameOfLife.new(pop)
     end
 
     def remove(cells : Set(Point))
-      @population.subtract cells
-      self
+      GameOfLife.new(@population - cells)
     end
 
     def add(cells : Set(Point))
-      @population.concat cells
-      self
+      GameOfLife.new(@population | cells)
     end
 
     def draw(x_range = -4..4, y_range = -4..4)
