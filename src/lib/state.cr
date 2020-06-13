@@ -1,6 +1,8 @@
 require "dataclass"
 
 module IGOL
+  dataclass State{variables : Hash(String, Pattern), grid : GameOfLife}
+  
   alias Point = {Int32, Int32}
   
   # Represents a mutable GoL grid

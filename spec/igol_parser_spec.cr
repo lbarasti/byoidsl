@@ -1,7 +1,8 @@
 require "./spec_helper"
 
 include IGOL
-describe IGOL do
+
+describe "IGOL.parser" do
   it "knows how to parse variables, patterns and coordinates" do
     var_parser.parse("a1").should eq VarName.new("a1")
     pattern_parser.parse(".*...*").should eq Pattern.new(".*...*")
@@ -22,11 +23,12 @@ describe IGOL do
     apply_parser.parse("(1,22) <- ...*..*").should eq Apply.new({1,22}, Pattern.new("...*..*"))
     apply_parser.parse("(1,   22) <- a2").should eq Apply.new({1,22}, VarName.new("a2"))
   end
+
   it "parsers commands" do
-    igol_parser.parse("show").should be_a(Show)
-    igol_parser.parse("evolve 72").should eq Evolve.new(72)
-    igol_parser.parse("a1: .*..*").should eq SetVar.new(VarName.new("a1"), Pattern.new(".*..*"))
-    igol_parser.parse("(1,22) <- ...*..*").should eq Apply.new({1,22}, Pattern.new("...*..*"))
-    igol_parser.parse("(1,   22) <- a2").should eq Apply.new({1,22}, VarName.new("a2"))
+    parser.parse("show").should be_a(Show)
+    parser.parse("evolve 72").should eq Evolve.new(72)
+    parser.parse("a1: .*..*").should eq SetVar.new(VarName.new("a1"), Pattern.new(".*..*"))
+    parser.parse("(1,22) <- ...*..*").should eq Apply.new({1,22}, Pattern.new("...*..*"))
+    parser.parse("(1,   22) <- a2").should eq Apply.new({1,22}, VarName.new("a2"))
   end
 end

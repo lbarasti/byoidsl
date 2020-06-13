@@ -1,28 +1,40 @@
-require "./game_of_life"
+require "./state"
 require "./commands"
 
 module IGOL
-  def self.interpret(state : GameOfLife, command : Command) : {GameOfLife, String}
+  def self.interpret(state : State, command : Command) : {State, String}
     case command
     when Show
-      {state, state.draw}
+      {state, state.grid.draw}
     when Evolve
-      new_state = state.evolve(command.n)
-      {new_state, new_state.draw}
+      new_grid = state.grid.evolve(command.n)
+      new_state = state.copy(grid: new_grid)
+      {new_state, new_grid.draw}
     when Apply
       coord = command.coord
-      case pattern = command.pattern
+      pattern = case pattern_or_var = command.pattern
       when Pattern
-        live, dead = pattern.apply(coord)
-        new_state = state.add(live).remove(dead)
-        {new_state, new_state.draw}
+        pattern_or_var
       when VarName
-        raise Exception.new("Unsupported command")
+        var_name = pattern_or_var.name
+        if ptr = state.variables[var_name]?
+          ptr
+        else
+          raise Exception.new("Undefined variable: #{var_name}")
+        end
       else
         raise Exception.new("Unknown command")
       end
+      live, dead = pattern.apply(coord)
+      new_grid = state.grid.add(live).remove(dead)
+      new_state = state.copy(grid: new_grid)
+      {new_state, new_grid.draw}
     when SetVar
-      raise Exception.new("Unsupported command")
+      var_name = command.name.name
+      pattern = command.pattern
+      new_variables = state.variables.merge({ var_name => pattern })
+      new_state = state.copy(variables: new_variables)
+      {new_state, "#{var_name} set to #{pattern.pattern}"}
     else
       raise Exception.new("Unknown command")
     end

@@ -78,7 +78,7 @@ module IGOL
   })
   end
 
-  def igol_parser
+  def parser
     show_parser | evolve_parser | set_var_parser | apply_parser
   end
 end
