@@ -1,7 +1,5 @@
 require "./lib/repl"
-require "./lib/parser"
-require "./lib/interpreter"
-require "./lib/state"
+require "./igol"
 
 include IGOL
 
