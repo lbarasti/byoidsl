@@ -10,18 +10,16 @@ Clone the project, then run `shards install` to install the dependencies.
 
 You can now run the REPL with the following.
 ```
-crystal byoidsl
+crystal src/igol_repl.cr
 ```
 
 ## Usage
 
-At this stage, the REPL can parse commands to
+At this stage, the REPL can interpret commands to
 * show the current state of the grid
 * evolve the grid
 * assign a pattern to a variable
 * set a pattern on the grid
-
-Because we haven't implemented an interpreter yet, the commands will be parsed, but not executed.
 
 Try running the following yourself!
 
