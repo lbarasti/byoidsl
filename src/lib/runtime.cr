@@ -10,9 +10,9 @@ class Runtime(State, Cmd, Err)
     case command
     when Cmd
       @state, output = @interpreter.call(@state, command)
-      puts output
+      input.strip.ends_with?(";") ? nil : output
     else
-      puts "Syntax error: #{command}"
+      "Syntax error: #{command}"
     end
   end
 end

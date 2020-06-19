@@ -7,7 +7,8 @@ class Repl
     
     while input = fancy.readline("$ ") # Ask the user for input
       begin
-        process.call input
+        output = process.call input
+        puts output if output
       rescue ex : Exception
         puts "error: #{ex}"
       end
