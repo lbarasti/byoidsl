@@ -4,6 +4,8 @@ This repository is a companion to a live-coding project aimed at building your o
 
 You can check out the videos [here](https://www.youtube.com/playlist?list=PLfpFq_WLOW__7nB9z2CFUWZhzRM3oSBGM).
 
+![](./examples/demo.gif)
+
 ## Installation
 
 Clone the project, then run `shards install` to install the dependencies.
