@@ -1,5 +1,9 @@
 version: 1.0
 shards:
+  clim:
+    github: at-grandpa/clim
+    version: 0.12.0
+
   cute:
     github: Papierkorb/cute
     version: 0.3.1

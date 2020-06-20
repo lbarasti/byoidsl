@@ -16,6 +16,9 @@ dependencies:
     github: voximity/pars3k
   dataclass:
     github: lbarasti/dataclass
+  clim:
+    github: at-grandpa/clim
+    version: 0.12.0
 
 crystal: 0.34.0
 

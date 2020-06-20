@@ -38,4 +38,8 @@ module Counter
     Runtime(CounterState, Op, Er)
       .new(state, parser_fn, interpreter_fn)
   end
+
+  def self.version
+    "0.0.1"
+  end
 end

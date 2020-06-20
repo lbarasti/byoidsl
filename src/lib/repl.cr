@@ -7,8 +7,14 @@ class Repl
     
     while input = fancy.readline("$ ") # Ask the user for input
       begin
-        output = process.call input
-        puts output if output
+        if input.starts_with?("%load")
+          filepath = input.lchop("%load").strip
+          File.each_line(filepath) { |line|
+            Repl.eval_and_print process, line
+          }
+        else
+          Repl.eval_and_print process, input
+        end
       rescue ex : Exception
         puts "error: #{ex}"
       end
@@ -17,6 +23,11 @@ class Repl
     puts "Shutting down..."
   ensure
     Repl.write_history(fancy, history)
+  end
+
+  def self.eval_and_print(process, input)
+    output = process.call input
+    puts output if output
   end
 
   def self.load_history(fancy, history)
